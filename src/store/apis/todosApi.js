@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 const baseJsonUrl = "https://jsonplaceholder.typicode.com";
 
 export const todosApi = createApi({
-  reducerPath: 'todosApi',
+  reducerPath: 'todos',
   baseQuery: fetchBaseQuery({
     baseUrl: baseJsonUrl
   }),
