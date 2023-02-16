@@ -9,6 +9,7 @@ export const PokemonApp = () => {
 
   useEffect(() => {
     dispatch(getPokemons(0));
+    // dispatch(getPokemonsBasic(0));
   }, []);
 
   return (
