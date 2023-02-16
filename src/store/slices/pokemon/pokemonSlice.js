@@ -24,7 +24,8 @@ export const pokemonSlice = createSlice({
     builder
       .addCase(getPokemons.pending, (state) => {
         state.isLoading = true;
-      }).addCase(getPokemons.fulfilled, (state, action) => {
+      })
+      .addCase(getPokemons.fulfilled, (state, action) => {
         state.isLoading = false;
         state.pokemons = action.payload.pokemons;
         state.page = action.payload.page;

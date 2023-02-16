@@ -21,6 +21,7 @@ export const PokemonApp = () => {
           <ul>
             {pokemons.map(({ name }) => (
               <li
+                key={name}
                 style={{
                   color: 'white',
                 }}
