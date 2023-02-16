@@ -1,35 +1,45 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-// Core
-import { getPokemons } from "./store/thunks";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPokemons } from './store/thunks';
+import { pokemonSelector } from './store/selectors';
 
-const PokemonApp = () => {
-  const { isLoading, page, pokemons } = useSelector((state) => state.pokemons);
+export const PokemonApp = () => {
   const dispatch = useDispatch();
+  const { isLoading, pokemons = [], page } = useSelector(pokemonSelector);
 
   useEffect(() => {
-    dispatch(getPokemons());
+    dispatch(getPokemons(0));
+    // dispatch(getPokemonsBasic(0));
   }, []);
 
   return (
     <>
-      <h1>Pokemon App</h1>
+      <h1>PokemonApp</h1>
       <hr />
-      <span>Loading: {isLoading ? "true" : "false"}</span>
-      <ul>
-        {pokemons.map(({ name, url }) => (
-          <li key={name}>
-            <a href={url} target="_blank">
-              {name}
-            </a>
-          </li>
-        ))}
-      </ul>
-      <button disabled={isLoading} onClick={() => dispatch(getPokemons(page))}>
-        Next
-      </button>
+      <span>Loading: {isLoading ? 'Cargando...' : 'Cargado.'}</span>
+      {!isLoading && (
+        <>
+          <ul>
+            {pokemons.map(({ name }) => (
+              <li
+                key={name}
+                style={{
+                  color: 'white',
+                }}
+              >
+                {name}
+              </li>
+            ))}
+          </ul>
+          <p>Página: {page}</p>
+          <button
+            disabled={isLoading}
+            onClick={() => dispatch(getPokemons(page))}
+          >
+            Next
+          </button>
+        </>
+      )}
     </>
   );
 };
-
-export default PokemonApp;

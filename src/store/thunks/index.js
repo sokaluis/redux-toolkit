@@ -1,1 +1,1 @@
-export * from "./pokemon.thunk";
+export * from './pokemonThunks';
